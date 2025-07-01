@@ -1,0 +1,66 @@
+Microsoft (R) Macro Assembler Version 5.00                  6/19/25 22:31:16
+                                                             Page     1-1
+
+
+       1				assume cs:code, ds:data 
+       2				 
+       3 0000				data segment 
+       4 0000  01 02 03 04		        list db 01h, 02h, 03h, 04h 
+       5 0004  04			        count db 04h 
+       6 0005  0001			        res dw 01h 
+       7 0007				data ends 
+       8				 
+       9 0000				code segment 
+      10 0000				start: 
+      11 0000  B8 ---- R		        mov ax, data 
+      12 0003  8E D8			        mov ds, ax 
+      13 0005  B8 0000			        mov ax, 0h 
+      14				 
+      15 0008  8A 0E 0004 R		        mov cl, count 
+      16 000C  8D 36 0000 R		        lea si, list 
+      17 0010				go: 
+      18 0010  02 04			        add al, [si] 
+      19 0012  46			        inc si 
+      20 0013  FE C9			        dec cl 
+      21 0015  75 F9			        jnz go 
+      22 0017  A3 0005 R		        mov res, ax 
+      23				 
+      24 001A  CC			        int 03h 
+      25 001B				code ends 
+      26				end start 
+Microsoft (R) Macro Assembler Version 5.00                  6/19/25 22:31:16
+                                                             Symbols-1
+
+
+Segments and Groups:
+
+                N a m e         	Length	 Align	Combine Class
+
+CODE . . . . . . . . . . . . . .  	001B	PARA	NONE	
+DATA . . . . . . . . . . . . . .  	0007	PARA	NONE	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+COUNT  . . . . . . . . . . . . .  	L BYTE	0004	DATA
+
+GO . . . . . . . . . . . . . . .  	L NEAR	0010	CODE
+
+LIST . . . . . . . . . . . . . .  	L BYTE	0000	DATA
+
+RES  . . . . . . . . . . . . . .  	L WORD	0005	DATA
+
+START  . . . . . . . . . . . . .  	L NEAR	0000	CODE
+
+@FILENAME  . . . . . . . . . . .  	TEXT  addserie		
+
+
+     26 Source  Lines
+     26 Total   Lines
+      9 Symbols
+
+  50574 + 465970 Bytes symbol space free
+
+      0 Warning Errors
+      0 Severe  Errors
